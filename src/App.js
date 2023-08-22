@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Content from './components/Content';
+import Footer from './components/Footer';
+import { AuthProvider } from './context/AuthContext';
+import { TaskProvider } from './context/TaskContext';
+import { AttendanceProvider } from './context/AttendanceContext';
+import './styles.css';
+import React, { useState } from 'react';
+
 
 function App() {
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+    <AuthProvider>
+      <TaskProvider>
+        <AttendanceProvider>
+          <Router>
+            <div className="App">
+              <Header />
+              <div className="container">
+                <div className="row">
+                  <div className={`app ${sidebarOpen ? 'active' : ''}`}>
+                    <Sidebar />
+                    <div className="content-container">
+                      <Content toggleSidebar={toggleSidebar} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Footer />
+            </div>
+          </Router>
+        </AttendanceProvider>
+      </TaskProvider>
+    </AuthProvider>
   );
 }
 
