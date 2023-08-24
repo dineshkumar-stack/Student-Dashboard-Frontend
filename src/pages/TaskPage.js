@@ -9,6 +9,27 @@ function TaskPage() {
       mark: 10,
       link: 'https://example.com/assignment1',
     },
+    {
+      id: 1,
+      title: 'Complete Assignment 2',
+      description: 'Finish the assigned project by the due date.',
+      mark: 10,
+      link: 'https://example.com/assignment1',
+    },
+    {
+      id: 1,
+      title: 'Complete Assignment 2',
+      description: 'Finish the assigned project by the due date.',
+      mark: 10,
+      link: 'https://example.com/assignment1',
+    },
+    {
+      id: 1,
+      title: 'Complete Assignment 2',
+      description: 'Finish the assigned project by the due date.',
+      mark: 10,
+      link: 'https://example.com/assignment1',
+    },
     // ... other task objects
   ];
 
