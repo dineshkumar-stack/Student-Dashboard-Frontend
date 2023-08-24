@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 function Header() {
@@ -13,7 +13,7 @@ function Header() {
             Student Dashboard
           </Link>
           <nav className="nav">
-            {/* <ul>
+            <ul>
               <li>
                 <NavLink to="/" activeClassName="active" exact>
                   Home
@@ -39,7 +39,7 @@ function Header() {
                   Attendance
                 </NavLink>
               </li>
-            </ul> */}
+            </ul>
           </nav>
           {user ? (
             <div className="user-info">
