@@ -7,12 +7,11 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="container">
-        <div className="header-inner">
+      <div className="d-flex align-items-center">
           <Link to="/" className="logo">
-            Student Dashboard
+            ZEN Student
           </Link>
-          <nav className="nav">
+          <nav className="nav mx-auto">
             <ul>
               <li>
                 <NavLink to="/" activeClassName="active" exact>
@@ -51,7 +50,6 @@ function Header() {
               Login
             </Link>
           )}
-        </div>
       </div>
     </header>
   );

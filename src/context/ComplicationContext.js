@@ -8,9 +8,9 @@ export function useComplicationContext() {
 
 export function ComplicationProvider({ children }) {
     const complications = {
-        type1: 10,
-        type2: 5,
-        type3: 3,
+        Complete: 10,
+        Pending: 5,
+        Upcoming: 3,
         // ...more complication types and their counts
       };
 

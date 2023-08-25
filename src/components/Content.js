@@ -1,11 +1,11 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Home from '../pages/Home';
-import BarChart from '../pages/BarChart';
-import Dashboard from '../pages/Dashboard';
-import ChartPage from '../pages/ChartPage';
-import TaskPage from '../pages/TaskPage';
-import AttendancePage from '../pages/AttendancePage';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Home from "../pages/Home";
+import BarChart from "../pages/BarChart";
+import Dashboard from "../pages/Dashboard";
+import ChartPage from "../pages/ChartPage";
+import TaskPage from "../pages/TaskPage";
+import AttendancePage from "../pages/AttendancePage";
 
 function Content() {
   return (

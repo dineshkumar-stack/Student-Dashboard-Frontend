@@ -1,48 +1,103 @@
-import React from 'react';
+import React from "react";
+import Button from "react-bootstrap/Button";
 
 function TaskPage() {
   const tasks = [
     {
       id: 1,
-      title: 'Complete Assignment 1',
-      description: 'Finish the assigned project by the due date.',
+      title: "Complete Assignment 1",
+      description: "Finish the assigned project by the due date.",
       mark: 10,
-      link: 'https://example.com/assignment1',
+      link: "https://example.com/assignment1",
     },
     {
       id: 1,
-      title: 'Complete Assignment 2',
-      description: 'Finish the assigned project by the due date.',
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
       mark: 10,
-      link: 'https://example.com/assignment1',
+      link: "https://example.com/assignment1",
     },
     {
       id: 1,
-      title: 'Complete Assignment 2',
-      description: 'Finish the assigned project by the due date.',
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
       mark: 10,
-      link: 'https://example.com/assignment1',
+      link: "https://example.com/assignment1",
     },
     {
       id: 1,
-      title: 'Complete Assignment 2',
-      description: 'Finish the assigned project by the due date.',
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
       mark: 10,
-      link: 'https://example.com/assignment1',
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
+    },
+    {
+      id: 1,
+      title: "Complete Assignment 2",
+      description: "Finish the assigned project by the due date.",
+      mark: 10,
+      link: "https://example.com/assignment1",
     },
     // ... other task objects
   ];
 
   return (
     <div className="task-page">
-      <h2>Task Page</h2>
-      <table className="table">
+      <table className="table table-hover">
         <thead>
+          <tr>
+            <td colSpan="5">
+              <h4>Task Page</h4>
+            </td>
+          </tr>
           <tr>
             <th>Title</th>
             <th>Description</th>
             <th>Mark</th>
             <th>Link</th>
+            <th>Recordings</th>
           </tr>
         </thead>
         <tbody>
@@ -52,7 +107,14 @@ function TaskPage() {
               <td>{task.description}</td>
               <td>{task.mark}</td>
               <td>
-                <input type="text" className="form-control" placeholder="Enter link" />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter link"
+                />
+              </td>
+              <td>
+                <Button variant="outline-info">Link</Button>{" "}
               </td>
             </tr>
           ))}

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+import NavBar from "./components/NavBar"
 import Content from './components/Content';
 import Footer from './components/Footer';
 import { AuthProvider } from './context/AuthContext';
@@ -25,14 +26,13 @@ function App() {
         <AttendanceProvider>
           <Router>
             <div className="App">
-              <Header />
-              <div className="container">
+              <NavBar/>
+              {/* <Header /> */}
                 <div className="row">
                   <div className={`app ${sidebarOpen ? 'active' : ''}`}>
-                    <Sidebar />
+                    {/* <Sidebar /> */}
                     <div className="content-container">
                       <Content toggleSidebar={toggleSidebar} />
-                    </div>
                   </div>
                 </div>
               </div>

@@ -22,7 +22,7 @@ function BarChart() {
         <div>
             <div className="chart-container">
                 <div className="chart">
-                    <h3>Task Completion</h3>
+                    <h4>Task Completion</h4>
                     <Bar data={taskData} />
                 </div>
             </div>
