@@ -25,7 +25,8 @@ function App() {
       <TaskProvider>
         <AttendanceProvider>
           <Router>
-            <div className="App">
+            <div className="App" >
+            <div class="bg"></div>
               <NavBar/>
               {/* <Header /> */}
                 <div className="row">
