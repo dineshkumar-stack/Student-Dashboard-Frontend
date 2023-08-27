@@ -140,76 +140,6 @@ body {
   padding: 0;
 }
 
-/* Header Styles */
-.header {
-  background-color: #333;
-  color: #fff;
-  padding: 15px 0;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.header .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-}
-
-.header .nav {
-  display: flex;
-  align-items: center;
-}
-
-.header .nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.header .nav li {
-  margin-right: 130px;
-}
-
-.header .nav li:last-child {
-  margin-right: 0;
-}
-
-.header .nav a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.header .nav a:hover {
-  color: #17a2b8;
-}
-
-.header .user-info {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.header .user-info span {
-  margin-right: 10px;
-}
-
-.header .logout-btn {
-  background-color: #17a2b8;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.header .logout-btn:hover {
-  background-color: #138496;
-}
-
-
 .grid-stack {
   background: rgba(0, 0, 0, 0.167);
   border-radius: 5px;
@@ -262,7 +192,7 @@ thead {
 /* --------- */
 .sticky {
   background: rgb(148,0,0);
-  background: linear-gradient(0deg, rgba(244, 244, 244, 0.709) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, #14015a00 0%, #14015ab6 100%);
   box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
   backdrop-filter: blur(15px) !important;
 }
@@ -272,6 +202,7 @@ thead {
   transition: all 0.3s ease-out 0s !important;
   padding: 0.3rem 2rem !important;
   font-size: 1.2rem !important;
+
 }
 
 .navbar-toggler {
@@ -282,7 +213,7 @@ thead {
 
 .navbar-toggler span {
   display: block !important;
-  background-color: #8c8c8c !important;
+  background-color: #71acff !important;
   height: 4px !important;
   width: 27px !important;
   margin-top: 5px !important;
@@ -345,9 +276,10 @@ thead {
 }
 
 .navbar-nav .nav-link {
-  color: #000000 !important;
+  color: #ffffff !important;
   padding-right: 1rem !important;
   padding-left: 1rem !important;
+
 }
 
 .nav-link {
@@ -379,7 +311,7 @@ thead {
   height: 5px;
   width: 0;
   border-radius: 16px;
-  background: #787878;
+  background: #2853ff;
   bottom: 1px;
   left: 0;
   z-index: -1;
@@ -394,10 +326,8 @@ thead {
   text-align: center;
 }
 
-
-
 .bg {
-  background: url(../image/vackground-com-hDQ-dUjQN8E-unsplash.jpg) no-repeat;
+  background: url(../image/vackground-com-SfDofjXtxHE-unsplash.jpg) no-repeat;
   background-size: cover;
   height: 100%;
   width: 100%;

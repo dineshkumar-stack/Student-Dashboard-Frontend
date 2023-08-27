@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import logo from "../logo.svg";
+import logo from "../Zen_White.svg";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 // import { CgGitFork } from "react-icons/cg";
-// import { ImBlog } from "react-icons/im";
+import { FcLeave } from "react-icons/fc";
+import { BiSolidDashboard, BiTask, BiUserPin } from "react-icons/bi";
 import {
   AiFillStar,
   AiFillGithub,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
 } from "react-icons/ai";
 
-import { CgFileDocument } from "react-icons/cg";
+// import { CgFileDocument } from "react-icons/cg";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -56,7 +54,7 @@ function NavBar() {
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> Dashboard
+                <BiSolidDashboard style={{ marginBottom: "2px" }} /> Dashboard
               </Nav.Link>
             </Nav.Item>
 
@@ -66,20 +64,20 @@ function NavBar() {
                 to="/tasks"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> Task
+                <BiTask style={{ color:"white", marginBottom: "2px" }} /> Task
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/project"
+                to="/user"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineFundProjectionScreen
+                <BiUserPin
                   style={{ marginBottom: "2px" }}
                 />{" "}
-                Projects
+                User
               </Nav.Link>
             </Nav.Item>
 
@@ -89,7 +87,7 @@ function NavBar() {
                 to="/attendance"
                 onClick={() => updateExpanded(false)}
               >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Attendance
+                <FcLeave style={{ marginBottom: "2px" }} /> Attendance
               </Nav.Link>
             </Nav.Item>
 

@@ -31,8 +31,6 @@ function months(config) {
 }
 function CodeKataDetails() {
 
-
-
     // Task data for the bar chart
     const CodeKataData = {
         labels: months({ count: 12 }),
