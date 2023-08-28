@@ -1,87 +1,17 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from 'react';
+
 
 function TaskPage() {
-  const tasks = [
-    {
-      id: 1,
-      title: "Complete Assignment 1",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    {
-      id: 1,
-      title: "Complete Assignment 2",
-      description: "Finish the assigned project by the due date.",
-      mark: 10,
-      link: "https://example.com/assignment1",
-    },
-    // ... other task objects
-  ];
+
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    fetch('https://student-dashboard-be.onrender.com/api/tasks')
+      .then(response => response.json())
+      .then(data => setTasks(data))
+      .catch(error => console.error('Error fetching tasks:', error));
+  }, []);
 
   return (
     <div className="task-page">
@@ -114,7 +44,7 @@ function TaskPage() {
                 />
               </td>
               <td>
-                <Button variant="outline-info">Link</Button>{" "}
+                <Button variant="outline-info" href={task.link} >Play Recordings</Button>{" "}
               </td>
             </tr>
           ))}

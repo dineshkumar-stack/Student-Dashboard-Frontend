@@ -1,92 +1,19 @@
 import Accordion from 'react-bootstrap/Accordion';
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router } from 'react-router-dom';
 // import TaskPage from '../pages/TaskPage';
 import AdditionalClass from './AddClass';
 
 function AllDetailsInOne() {
+    const [tasks, setTasks] = useState([]);
 
-    const tasks = [
-        {
-            id: 1,
-            title: "Complete Assignment 1",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-        {
-            id: 1,
-            title: "Complete Assignment 2",
-            description: "Finish the assigned project by the due date.",
-            mark: 10,
-            link: "https://example.com/assignment1",
-        },
-
-    ];
+    useEffect(() => {
+        fetch('https://student-dashboard-be.onrender.com/api/tasks')
+            .then(response => response.json())
+            .then(data => setTasks(data))
+            .catch(error => console.error('Error fetching tasks:', error));
+    }, []);
 
     return (
         <Router>
@@ -114,7 +41,7 @@ function AllDetailsInOne() {
                                             <td>{task.title}</td>
                                             <td>{task.mark}</td>
                                             <td>
-                                                <Button variant="outline-info">Play Recordings</Button>{" "}
+                                                <Button variant="outline-info" href={task.link} target="_blank" >Play Recordings</Button>{" "}
                                             </td>
                                         </tr>
                                     ))}
