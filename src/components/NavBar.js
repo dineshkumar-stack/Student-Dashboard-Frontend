@@ -7,13 +7,10 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 // import { CgGitFork } from "react-icons/cg";
 import { FcLeave } from "react-icons/fc";
-import { BiSolidDashboard, BiTask, BiUserPin } from "react-icons/bi";
-import {
-  AiFillStar,
-  AiFillGithub,
-} from "react-icons/ai";
+import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
+import { AiFillStar, AiFillGithub } from "react-icons/ai";
 
-// import { CgFileDocument } from "react-icons/cg";
+import { GrTasks } from "react-icons/gr";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -34,7 +31,7 @@ function NavBar() {
       expanded={expand}
       fixed="top"
       expand="md"
-      className={navColour ? "sticky" : "navbar"}
+      className={navColour ? "sticky" : "navbar border-bottom"}
     >
       <Container>
         <Navbar.Brand href="/" className="d-flex">
@@ -64,7 +61,7 @@ function NavBar() {
                 to="/tasks"
                 onClick={() => updateExpanded(false)}
               >
-                <BiTask style={{ color:"white", marginBottom: "2px" }} /> Task
+                <GrTasks style={{ color: "white", marginBottom: "2px" }} /> Task
               </Nav.Link>
             </Nav.Item>
 
@@ -74,10 +71,7 @@ function NavBar() {
                 to="/user"
                 onClick={() => updateExpanded(false)}
               >
-                <BiUserPin
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                User
+                <BiUserPin style={{ marginBottom: "2px" }} /> User
               </Nav.Link>
             </Nav.Item>
 

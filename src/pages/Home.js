@@ -31,10 +31,10 @@ function Home() {
         <div className="container-lg">
         </div>
         <div className="grid-stack">
-          <div className="grid-stack-item border-dark" gs-x="0" gs-w="4" gs-h="5">
+          <div className="grid-stack-item border-dark AllDetailsInOne" gs-x="0" gs-w="4" gs-h="5">
             <div className="grid-stack-item-content"><AllDetailsInOne /></div>
           </div>
-          <div className="grid-stack-item border-dark" gs-x="2" gs-w="3" gs-h="2">
+          <div className="grid-stack-item border-dark BarChart" gs-x="2" gs-w="3" gs-h="2">
             <div className="grid-stack-item-content"><BarChart /></div>
           </div>
           <div className="grid-stack-item border-dark" gs-x="3" gs-w="3" gs-h="2">
