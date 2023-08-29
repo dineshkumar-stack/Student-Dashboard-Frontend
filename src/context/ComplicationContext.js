@@ -1,23 +1,33 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const ComplicationContext = createContext();
 
-export function useComplicationContext() {
-  return useContext(ComplicationContext);
-}
+export const ComplicationProvider = ({ children }) => {
+  const [taskBarStatus, setTaskBarStatus] = useState(0);
+  const [taskCount, setTaskCount] = useState(0);
 
-export function ComplicationProvider({ children }) {
-    const complications = {
-        Complete: 10,
-        Pending: 5,
-        Upcoming: 3,
-        // ...more complication types and their counts
-      };
+  const complications = {
+    Complete_Task : taskBarStatus,
+    Pending_Task: taskCount - taskBarStatus,
+    // ...more complication types and their counts
+  };
+  useEffect(() => {
+    // Fetch data from the  API endpoint 
+    fetch('https://student-dashboard-be.onrender.com/api/taskbarstatus')
+      .then(response => response.json())
+      .then(data => setTaskBarStatus(data.length))
+      .catch(error => console.error('Error fetching task bar status:', error));
+
+    // Fetch data from the second API endpoint
+    fetch('https://student-dashboard-be.onrender.com/api/tasks')
+      .then(response => response.json())
+      .then(data => setTaskCount(data.length))
+      .catch(error => console.error('Error fetching tasks:', error));
+  }, []);
 
   return (
-    <ComplicationContext.Provider value={{ complications }}>
+    <ComplicationContext.Provider value={{ complications, taskBarStatus, taskCount }}>
       {children}
     </ComplicationContext.Provider>
   );
-
-}
+};

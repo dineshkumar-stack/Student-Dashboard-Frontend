@@ -5,10 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import logo from "../logo.svg";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-// import { CgGitFork } from "react-icons/cg";
 import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
-import { AiFillStar, AiFillGithub } from "react-icons/ai";
+import { AiFillGithub } from "react-icons/ai";
 
 import { GrTasks } from "react-icons/gr";
 
@@ -89,10 +88,9 @@ function NavBar() {
               <Button
                 href="https://github.com/dineshkumar-stack"
                 target="_blank"
-                className="fork-btn-inner"
+                className="fork-btn-inner btn btn-dark"
               >
                 <AiFillGithub style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
           </Nav>

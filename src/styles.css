@@ -1,7 +1,5 @@
-/* Import Bootstrap CSS */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-/* Global Styles */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #001C30;
@@ -13,79 +11,6 @@ body {
   margin-top: 50px;
 }
 
-/* Header Styles */
-.header {
-  background-color: #031931;
-  color: #001C30;
-  position: fixed;
-  width: 100%;
-  padding: 15px 0;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-/* Sidebar Styles */
-.sidebar {
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  /* width: 250px; */
-  background-color: #333;
-  color: #fff;
-  padding-top: 20px;
-}
-
-.sidebar-header {
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-.sidebar h3 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px 0;
-}
-
-.sidebar ul li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 10px 20px;
-  transition: background-color 0.3s;
-}
-
-.sidebar ul li a.active,
-.sidebar ul li a:hover {
-  background-color: #17a2b8;
-  color: #fff;
-  border-radius: 4px;
-}
-
-/* Responsive Sidebar */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 15%;
-    z-index: 1;
-    position: fixed;
-    margin-left: -5px;
-    transition: margin-left 0.3s;
-  }
-
-  .sidebar.active {
-    margin-left: 0;
-  }
-}
-
-
 /* Content Styles */
 .content {
   padding: 40px 20px;
@@ -96,7 +21,6 @@ body {
 }
 
 /* Footer Styles */
-
 .footer {
   text-align: center;
   padding: 0.1px 0;
@@ -129,9 +53,6 @@ body {
   background-color: #138496;
 }
 
-/* Import Bootstrap CSS */
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
 /* Global Styles */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -143,7 +64,6 @@ body {
 .grid-stack {
   /* background: rgba(0, 0, 0, 0.167); */
   border-radius: 5px;
-
   /* position:fixed; */
 }
 
@@ -305,23 +225,8 @@ thead {
   position: relative;
   z-index: 1;
 }
-
-.navbar-nav .nav-item a::after {
-  content: "";
-  position: relative;
-  display: block;
-  height: 5px;
-  width: 0;
-  border-radius: 16px;
-  background: #2853ff;
-  bottom: 1px;
-  left: 0;
-  z-index: -1;
-  transition: all 0.3s ease-out 0s;
-}
-
-.navbar-nav .nav-item a:hover::after {
-  width: 100%;
+.navbar-nav .nav-item a:hover{
+  color: #00eeff;
 }
 
 .container-lg {
@@ -361,4 +266,13 @@ thead {
 
 .grid-stack-item {
   box-shadow: rgba(255, 255, 255, 0.1) -4px 9px 25px -6px;
+}
+
+.git-design{
+  background-color: #0000007b;
+  color: #fff;
+}
+
+.fork-btn-inner{
+  background-color: #000000;
 }

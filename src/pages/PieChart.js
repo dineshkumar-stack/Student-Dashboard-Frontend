@@ -17,9 +17,10 @@ function PieChart() {
           "#4CAF50",
           "#E91E63",
         ],
-        borderWidth: 1,
+        borderWidth: 3,
       },
     ],
+    
     labels: Object.keys(complications),
   };
 
@@ -29,7 +30,7 @@ function PieChart() {
         <div className="chart">
           {" "}
           <br />
-          <h5>Complication Distribution</h5>
+          <h5>Task Status</h5>
           <br />
           <Pie data={complicationData} />
         </div>

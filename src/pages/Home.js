@@ -11,13 +11,13 @@ import AllDetailsInOne from "./Task_AddClass";
 import CodeKataDetails from "./CodekataPage";
 
 function Home() {
-
-
-
   useEffect(() => {
-    var options = { // put in gridstack options here
-      disableOneColumnMode: true, // for jfiddle small window size
-      float: false
+    var options = {
+      disableOneColumnMode: true,
+      float: true,
+      animate: true
+      
+
     };
     var grid = GridStack.init(options);
 
@@ -44,7 +44,7 @@ function Home() {
             <div className="grid-stack-item-content"><PieChart /></div>
           </div>
           <div className="grid-stack-item border-dark" gs-x="4" gs-w="6" gs-h="2">
-            <div className="grid-stack-item-content"><Github /></div>
+            <div className="grid-stack-item-content git-design"><Github /></div>
           </div>
           <div className="grid-stack-item border-dark" gs-x="5" gs-w="2" gs-h="5">
             <div className="grid-stack-item-content"><AdditionalClass /></div>
