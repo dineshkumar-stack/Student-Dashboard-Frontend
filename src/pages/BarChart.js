@@ -1,32 +1,49 @@
-import React, { useContext } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { TaskContext } from '../context/TaskContext';
+import React, { useState, useEffect } from "react";
+import { Bar } from "react-chartjs-2";
+
+// import { TaskContext } from '../context/TaskContext';
 
 function BarChart() {
-    const { tasks } = useContext(TaskContext);
+  const [tasksBar, setTasksBar] = useState([]);
 
-    // Task data for the bar chart
-    const taskData = {
-        labels: tasks.map((task) => task.name),
-        datasets: [
-            {
-                label: 'Number of Tasks',
-                data: tasks.map((task) => task.completed ? 1 : 0),
-                backgroundColor: 'rgba(75,192,192,0.2)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderWidth: 1,
-            },
-        ],
-    };
-    return (
-        <div>
-            <div className="chart-container">
-                <div className="chart">
-                    <h4>Task Completion</h4>
-                    <Bar data={taskData} />
-                </div>
-            </div>
+  useEffect(() => {
+    fetch("https://student-dashboard-be.onrender.com/api/taskbarstatus")
+      .then((response) => response.json())
+      .then((data) => setTasksBar(data))
+      .catch((error) => console.error("Error fetching tasks:", error));
+  }, []);
+
+  // Task data for the bar chart
+  const taskData = {
+    labels: tasksBar.map((task) => task.SNo),
+    datasets: [
+      {
+        label: "Task score",
+        data: tasksBar.map((task) => (task.mark)),
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return (
+    <div>
+      <div className="chart-container">
+        <div className="chart">
+          <h4>Task Score</h4>
+          <Bar data={taskData} options={chartOptions} />
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 export default BarChart;
