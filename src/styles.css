@@ -68,7 +68,8 @@ body {
 }
 
 .grid-stack-item-content {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  text-align: center;
   background-color: #ffffff;
   border-radius: 5px;
 
@@ -225,7 +226,8 @@ thead {
   position: relative;
   z-index: 1;
 }
-.navbar-nav .nav-item a:hover{
+
+.navbar-nav .nav-item a:hover {
   color: #00eeff;
 }
 
@@ -268,11 +270,27 @@ thead {
   box-shadow: rgba(255, 255, 255, 0.1) -4px 9px 25px -6px;
 }
 
-.git-design{
+.git-design {
   background-color: #0000007b;
   color: #fff;
 }
 
-.fork-btn-inner{
+.fork-btn-inner {
   background-color: #000000;
+}
+
+.form-control {
+  padding: 10px;
+  margin: 10px;
+}
+
+.accordion-body {
+  padding: 5px 50px;
+  text-decoration: none;
+}
+
+.accordion-item, span {
+
+  font-size: smaller;
+  padding-left: 50px;
 }
