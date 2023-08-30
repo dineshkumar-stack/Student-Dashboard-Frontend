@@ -17,7 +17,7 @@ function AllDetailsInOne() {
 
     return (
         <Router>
-            <Accordion defaultActiveKey={['1']} flush>
+            <Accordion defaultActiveKey={['2']} flush>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Task Details</Accordion.Header>
                     <Accordion.Body>
@@ -31,7 +31,7 @@ function AllDetailsInOne() {
                                     </tr>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Mark</th>
+                                        <th>Activities</th>
                                         <th>Recordings</th>
                                     </tr>
                                 </thead>
@@ -39,7 +39,7 @@ function AllDetailsInOne() {
                                     {tasks.map((task) => (
                                         <tr key={task.id}>
                                             <td>{task.title}</td>
-                                            <td>{task.mark}</td>
+                                            <td><a href={task.link}>View</a></td>
                                             <td>
                                                 <Button variant="outline-info" href={task.link} target="_blank" >Play Recordings</Button>{" "}
                                             </td>

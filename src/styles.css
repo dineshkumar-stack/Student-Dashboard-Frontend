@@ -181,7 +181,7 @@ thead {
   .navbar {
     padding: 0.1rem 0.5rem !important;
     font-size: 1.4rem !important;
-    background-color: #181a27 !important;
+    background: linear-gradient(0deg, #fffdfd 0%, #ffffff 100%) !important;
   }
 
   .navbar-nav .nav-item a::after {
@@ -289,8 +289,14 @@ thead {
   text-decoration: none;
 }
 
-.accordion-item, span {
+.accordion-item span {
 
-  font-size: smaller;
+  font-size: 12px;
   padding-left: 50px;
+  color: #393939;
 }
+
+.task-submit-page .task-submit-page-item {
+  background-color: #f4f4f4ac;
+}
+

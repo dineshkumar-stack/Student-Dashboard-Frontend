@@ -20,7 +20,8 @@ function TaskPage() {
   const [BELink, setBELink] = useState("");
 
   const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => {setShowModal(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
     resetForm()
   };
 
@@ -66,9 +67,9 @@ function TaskPage() {
       <table className="table table-hover">
         <thead>
           <tr>
-            <td colSpan="5">
-              <h4>Task Page</h4>
-              <Button variant="primary" onClick={handleShowModal}>
+            <td>
+              <h4 className="float-start">Task Page</h4>
+              <Button variant="primary float-end" onClick={handleShowModal}>
                 Task Submits
               </Button>
             </td>
@@ -76,11 +77,10 @@ function TaskPage() {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <Accordion defaultActiveKey="1">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>{task.title}</Accordion.Header><span>Submitted on: {dateFormat(task.timeStamp,"hh:mm | dddd | mmmm dS | yyyy")}</span>
+            <Accordion className="task-submit-page" defaultActiveKey={['2']} flush>
+              <Accordion.Item className="task-submit-page-item" eventKey="0">
+                <Accordion.Header>{task.title}</Accordion.Header><span>Submitted on: &#128338; {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)} &#128197;</span>
                 <Accordion.Body>
-                  <table>
                     <tr>
                       <td>
                         <strong>Front End Link : </strong>
@@ -90,66 +90,67 @@ function TaskPage() {
                         <a href={task.BackEndLink}>{task.BackEndLink}</a>
                       </td>
                     </tr>
-                  </table>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
+
           ))}
         </tbody>
       </table>
+      <div>
+        <Modal size="lg" show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add Task</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="SNo">
+                <Form.Control
+                  type="Number"
+                  placeholder="S.NO"
+                  value={SNo}
+                  onChange={(e) => setSNo(e.target.value)}
+                />
+              </Form.Group>
 
-      <Modal size="lg" show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Task</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="SNo">
-              <Form.Control
-                type="Number"
-                placeholder="S.NO"
-                value={SNo}
-                onChange={(e) => setSNo(e.target.value)}
-              />
-            </Form.Group>
+              <Form.Group controlId="taskTitle">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter task title"
+                  value={taskTitle}
+                  onChange={(e) => setTaskTitle(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="taskTitle">
-              <Form.Control
-                type="text"
-                placeholder="Enter task title"
-                value={taskTitle}
-                onChange={(e) => setTaskTitle(e.target.value)}
-              />
-            </Form.Group>
+              <Form.Group controlId="FELink">
+                <Form.Control
+                  type="text"
+                  placeholder="Front-end Source code"
+                  value={FELink}
+                  onChange={(e) => setFELink(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="FELink">
-              <Form.Control
-                type="text"
-                placeholder="Front-end Source code"
-                value={FELink}
-                onChange={(e) => setFELink(e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="BELink">
-              <Form.Control
-                type="text"
-                placeholder="Back-end Source code"
-                value={BELink}
-                onChange={(e) => setBELink(e.target.value)}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+              <Form.Group controlId="BELink">
+                <Form.Control
+                  type="text"
+                  placeholder="Back-end Source code"
+                  value={BELink}
+                  onChange={(e) => setBELink(e.target.value)}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 
-// import { TaskContext } from '../context/TaskContext';
-
 function BarChart() {
   const [tasksBar, setTasksBar] = useState([]);
 
@@ -32,6 +30,8 @@ function BarChart() {
     scales: {
       y: {
         beginAtZero: false,
+        // grace:1,
+        position: 'left',
       },
     },
   };

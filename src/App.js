@@ -1,6 +1,4 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-// import Header from './components/Header';
-// import Sidebar from './components/Sidebar';
 import NavBar from "./components/NavBar"
 import Content from './components/Content';
 import Footer from './components/Footer';
@@ -28,10 +26,8 @@ function App() {
             <div className="App" >
             <div class="bg"></div>
               <NavBar/>
-              {/* <Header /> */}
                 <div className="row">
                   <div className={`app ${sidebarOpen ? 'active' : ''}`}>
-                    {/* <Sidebar /> */}
                     <div className="content-container">
                       <Content toggleSidebar={toggleSidebar} />
                   </div>
