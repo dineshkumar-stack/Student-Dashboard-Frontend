@@ -1,7 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from "./components/NavBar"
 import Content from './components/Content';
-import Footer from './components/Footer';
 import { AuthProvider } from './context/AuthContext';
 import { TaskProvider } from './context/TaskContext';
 import { AttendanceProvider } from './context/AttendanceContext';
@@ -33,7 +32,6 @@ function App() {
                   </div>
                 </div>
               </div>
-              <Footer />
             </div>
           </Router>
         </AttendanceProvider>

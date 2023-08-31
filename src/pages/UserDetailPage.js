@@ -1,25 +1,22 @@
-import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 function UserProfile() {
-  const initialUserData = {
-    ProfileImage: "new.jpg",
-    name: "Dinesh Kumar",
-    phone: "8682935481",
-    email: "stardinesh4@gmail.com",
-    batch: "B43 WE Tamil",
-    Qualification: "MBA",
-    yearOfPass: "2017",
-    yearOfExperience: "5",
-    noticePeriod: "90",
-    gifhud: "dineshkumar-stack",
-    resume: "dinesh.doc",
-    portfolioURL: "www.dinesh-portfolio.com",
-  };
-
-  const [userData, setUserData] = useState(initialUserData);
+  const [userData, setUserData] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [editedUserData, setEditedUserData] = useState({});
+
+  useEffect(() => {
+    // Fetch user data from the API endpoint
+    fetch('https://student-dashboard-be.onrender.com/api/userdetail')
+      .then(response => response.json())
+      .then(data => {
+        setUserData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -38,151 +35,88 @@ function UserProfile() {
     }));
   };
 
-  const handleSaveClick = () => {
-    setEditMode(false);
-    setUserData(editedUserData);
-    // Perform logic to update user data on the backend
+  const handleSaveClick = async () => {
+    try {
+      // Perform an API call to update user data
+      const response = await fetch('https://student-dashboard-be.onrender.com/api/userdetail', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editedUserData),
+      });
+
+      if (response.ok) {
+        // User data updated successfully
+        setUserData(editedUserData);
+        setEditMode(false);
+        console.log('User data updated successfully');
+      } else {
+        // Handle error scenario
+        console.error('Error updating user data');
+      }
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
   };
 
   return (
     <div className="user-profile">
       <h2>User Profile</h2>
-      {!editMode && (
-        <Button variant="dark" onClick={handleEditClick}>
-          Edit
-        </Button>
-      )}
-      {editMode && (
-        <Button variant="danger" onClick={handleCancelClick}>
-          Cancel
-        </Button>
-      )}
-
       <Form>
-        <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-          <Form.Label column sm={2}>
-            Name
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="name"
-              value={editMode ? editedUserData.name : userData.name}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
+        <Form.Group controlId="ProfileImage">
+          <img src={userData.ProfileImage} alt="Profile" className="profile-image" />
         </Form.Group>
-
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formHorizontalPassword"
-        >
-          <Form.Label column sm={2}>
-            E-Mail
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="email"
-              value={editMode ? editedUserData.email : userData.email}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
-        </Form.Group>
-
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formHorizontalPassword"
-        >
-          <Form.Label column sm={2}>
-          Phone
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="phone"
-              value={editMode ? editedUserData.phone : userData.phone}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
-        </Form.Group>
-
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formHorizontalPassword"
-        >
-          <Form.Label column sm={2}>
-            E-Mail
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="email"
-              value={editMode ? editedUserData.eamil : userData.email}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
-        </Form.Group>
-
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formHorizontalPassword"
-        >
-          <Form.Label column sm={2}>
-            E-Mail
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="email"
-              value={editMode ? editedUserData.eamil : userData.email}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
-        </Form.Group>
-
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formHorizontalPassword"
-        >
-          <Form.Label column sm={2}>
-            E-Mail
-          </Form.Label>
-          <Col sm={5}>
-            <Form.Control
-              disabled={!editMode}
-              type="text"
-              name="email"
-              value={editMode ? editedUserData.eamil : userData.email}
-              onChange={handleInputChange}
-              readOnly={!editMode}
-            />
-          </Col>
-        </Form.Group>
-
-        {editMode && (
-          <div className="edit-buttons">
-            <Button variant="success" onClick={handleSaveClick}>
-              Submit
+        <Form.Group controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={editMode ? editedUserData.name : userData.name}
+            onChange={handleInputChange}
+            readOnly={!editMode}
+          />
+          {editMode && (
+            <div className="edit-buttons">
+              <Button variant="success" onClick={handleSaveClick}>
+                Save
+              </Button>
+              <Button variant="danger" onClick={handleCancelClick}>
+                Cancel
+              </Button>
+            </div>
+          )}
+          {!editMode && (
+            <Button variant="link" onClick={handleEditClick}>
+              Edit
             </Button>
-          </div>
-        )}
-        {/* Repeat similar Form.Group sections for other fields */}
+          )}
+        </Form.Group>
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={editMode ? editedUserData.email : userData.email}
+            onChange={handleInputChange}
+            readOnly={!editMode}
+          />
+          {editMode && (
+            <div className="edit-buttons">
+              <Button variant="success" onClick={handleSaveClick}>
+                Save
+              </Button>
+              <Button variant="danger" onClick={handleCancelClick}>
+                Cancel
+              </Button>
+            </div>
+          )}
+          {!editMode && (
+            <Button variant="link" onClick={handleEditClick}>
+              Edit
+            </Button>
+          )}
+        </Form.Group>
       </Form>
     </div>
   );
