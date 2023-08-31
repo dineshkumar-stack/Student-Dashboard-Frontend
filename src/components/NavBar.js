@@ -67,7 +67,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/user"
+                to="/userdetail"
                 onClick={() => updateExpanded(false)}
               >
                 <BiUserPin style={{ marginBottom: "2px" }} /> User

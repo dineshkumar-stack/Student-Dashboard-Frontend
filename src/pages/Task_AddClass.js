@@ -2,19 +2,16 @@ import Accordion from 'react-bootstrap/Accordion';
 import React, { useState, useEffect } from 'react';
 import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router } from 'react-router-dom';
-// import TaskPage from '../pages/TaskPage';
 import AdditionalClass from './AddClass';
 
 function AllDetailsInOne() {
     const [tasks, setTasks] = useState([]);
-
     useEffect(() => {
         fetch('https://student-dashboard-be.onrender.com/api/tasks')
             .then(response => response.json())
             .then(data => setTasks(data))
             .catch(error => console.error('Error fetching tasks:', error));
     }, []);
-
     return (
         <Router>
             <Accordion defaultActiveKey={['2']} flush>
@@ -50,17 +47,15 @@ function AllDetailsInOne() {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Additional Class</Accordion.Header>
+            <Accordion.Item eventKey="1">
+               <Accordion.Header>Additional Class</Accordion.Header>
                     <Accordion.Body>
                         <AdditionalClass />
                     </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>Mock Interview</Accordion.Header>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Mock Interview</Accordion.Header>
                     <Accordion.Body>
-
                         <div className="task-page">
                             <table className="table table-hover">
                                 <thead>
@@ -80,12 +75,9 @@ function AllDetailsInOne() {
                                 </tbody>
                             </table>
                         </div>
-
                     </Accordion.Body>
                 </Accordion.Item>
-
             </Accordion>
-
         </Router>
     )
 }
