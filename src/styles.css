@@ -320,3 +320,8 @@ thead {
 .prf2{
   padding: 10px;
 }
+
+.user-profile-container, h2 {
+  text-align: center;
+
+}
