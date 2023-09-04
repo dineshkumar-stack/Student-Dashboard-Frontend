@@ -26,6 +26,8 @@ function TaskPage() {
   };
 
   const handleSubmit = async () => {
+    window.location.reload(true)
+
     try {
       const response = await fetch(
         "https://student-dashboard-be.onrender.com/api/taskbarstatus",

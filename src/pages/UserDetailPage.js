@@ -39,6 +39,8 @@ function UserProfile() {
   };
 
   const handleSaveClick = async () => {
+    window.location.reload(true)
+
     try {
       // Perform an API call to update user data
       const response = await fetch(
