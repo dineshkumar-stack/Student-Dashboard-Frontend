@@ -1,42 +1,37 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import NavBar from "./components/NavBar"
-import Content from './components/Content';
-import { AuthProvider } from './context/AuthContext';
-import { TaskProvider } from './context/TaskContext';
-import { AttendanceProvider } from './context/AttendanceContext';
-import './styles.css';
-import React, { useState } from 'react';
-
+import { BrowserRouter as Router } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Content from "./components/Content";
+import { AuthProvider } from "./context/AuthContext";
+import { TaskProvider } from "./context/TaskContext";
+import { AttendanceProvider } from "./context/AttendanceContext";
+import "./styles.css";
+import React, {  } from "react";
 
 function App() {
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
   return (
-
-
     <AuthProvider>
       <TaskProvider>
         <AttendanceProvider>
           <Router>
-            <div className="App" >
-            <div class="bg"></div>
-              <NavBar/>
-                <div className="row">
-                  <div className={`app ${sidebarOpen ? 'active' : ''}`}>
-                    <div className="content-container">
-                      <Content toggleSidebar={toggleSidebar} />
+            <div className="App">
+              <div class="bg"></div>
+              <NavBar />
+              <div className="row">
+                  <div className="content-container">
+                    <Content />
                   </div>
-                </div>
               </div>
             </div>
           </Router>
         </AttendanceProvider>
       </TaskProvider>
     </AuthProvider>
+
+
+
+
+
   );
 }
 

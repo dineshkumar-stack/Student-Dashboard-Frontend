@@ -11,6 +11,7 @@ import AllDetailsInOne from "./Task_AddClass";
 import CodeKataDetails from "./CodekataPage";
 
 function Home() {
+
   useEffect(() => {
     var options = {
       disableOneColumnMode: true,

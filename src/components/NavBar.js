@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
-
 import { GrTasks } from "react-icons/gr";
 
 function NavBar() {

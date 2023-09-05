@@ -1,22 +1,29 @@
-import React, { createContext, useState } from 'react';
+// src/context/AuthContext.js
+import React, { createContext, useContext, useState } from 'react';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const login = (userData) => {
-    // Perform login logic
-    setUser(userData);
+  // Function to set the user as authenticated and store the token
+  const login = (token) => {
+    // You can decode the token or store it as is, depending on your needs
+    // Here, we'll just store it as is for simplicity
+    setCurrentUser({ token });
   };
 
   const logout = () => {
-    // Perform logout logic
-    setUser(null);
+    // Remove the user and token on logout
+    setCurrentUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

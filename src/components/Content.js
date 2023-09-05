@@ -7,6 +7,8 @@ import ChartPage from "../pages/ChartPage";
 import TaskPage from "../pages/TaskPage";
 import AttendancePage from "../pages/AttendancePage";
 import UserDetailPage from "../pages/UserDetailPage"
+import LoginPage from "../pages/LoginPage"
+
 
 function Content() {
   return (
@@ -19,9 +21,11 @@ function Content() {
         <Route path="/userdetail" component={UserDetailPage}/>
         <Route path="/attendance" component={AttendancePage} />
         <Route path="/barChart" component={BarChart} />
+        <Route path="/login" component={LoginPage}/>
       </Switch>
     </div>
   );
 }
+
 
 export default Content;
