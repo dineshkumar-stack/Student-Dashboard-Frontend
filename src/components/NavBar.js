@@ -10,6 +10,8 @@ import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
 import { useAuth } from '../context/AuthContext';
+import { TbLogout } from "react-icons/tb";
+
 
 
 
@@ -119,20 +121,21 @@ function NavBar() {
 
 
             <Nav.Item className="fork-btn">
-
-
-              <div 
+              <div
                 id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                   {currentUser ? (
                     <li className="nav-item">
+
                       <button className="btn btn-danger" onClick={handleLogout}>
+                        <TbLogout style={{ marginBottom: "2px"  }} />
                         Logout
                       </button>
                     </li>
                   ) : (
                     <li className="nav-item">
                       <Link className="btn btn-danger" to="/login">
+                        <TbLogout style={{ marginBottom: "2px" }} />
                         Logout
                       </Link>
                     </li>
