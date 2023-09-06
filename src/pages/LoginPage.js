@@ -89,7 +89,7 @@ function LoginPage() {
                     type="text"
                     className="form-control"
                     id="email"
-                    placeholder="Enter your username"
+                    placeholder="Enter your e-mail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
