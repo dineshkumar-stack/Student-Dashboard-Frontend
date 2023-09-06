@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
+import NavBar from "../components/NavBar";
+
 
 function UserProfile() {
   const [userData, setUserData] = useState({});
@@ -70,6 +72,7 @@ function UserProfile() {
 
   return (
     <div className="user-profile-container Container">
+      <NavBar/>
       <h2>User Profile</h2>
       {editMode && (
         <div className="edit-buttons float-lg-end">

@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { AttendanceContext } from '../context/AttendanceContext';
+import NavBar from "../components/NavBar";
+
 
 function AttendancePage() {
   const { attendance, markAttendance } = useContext(AttendanceContext);
@@ -10,6 +12,7 @@ function AttendancePage() {
 
   return (
     <div>
+      <NavBar/>
       <h2>Attendance Page</h2>
       <table>
         <thead>

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router } from 'react-router-dom';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import PieChart from "./PieChart";
@@ -9,9 +8,10 @@ import Github from "../components/Github";
 import AdditionalClass from "./AddClass";
 import AllDetailsInOne from "./Task_AddClass";
 import CodeKataDetails from "./CodekataPage";
+import NavBar from "../components/NavBar";
+
 
 function Home() {
-
   useEffect(() => {
     var options = {
       disableOneColumnMode: true,
@@ -27,8 +27,11 @@ function Home() {
 
   });
   return (
-    <Router>
+    
+
+
       <div className="home">
+        <NavBar/>
         <div className="container-lg">
         </div>
         <div className="grid-stack">
@@ -58,7 +61,6 @@ function Home() {
           </div> */}
         </div>
       </div>
-    </Router>
   );
 }
 

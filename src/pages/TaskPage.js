@@ -2,6 +2,8 @@ import { Button, Modal, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import dateFormat from 'dateformat';
+import NavBar from "../components/NavBar";
+
 
 function TaskPage() {
   const [tasks, setTasks] = useState([]);
@@ -66,6 +68,8 @@ function TaskPage() {
 
   return (
     <div className="task-page">
+              <NavBar/>
+
       <table className="table table-hover">
         <thead>
           <tr>

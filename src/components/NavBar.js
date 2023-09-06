@@ -4,15 +4,38 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import logo from "../logo.svg";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
+import { useAuth } from '../context/AuthContext';
+
+
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  const handleLogout = async () => {
+
+    try {
+      // Perform any necessary logout actions, e.g., API requests, token removal
+      // ...
+
+      localStorage.removeItem('token');
+      logout();
+
+      // Redirect to the login page or any other desired page
+      history.push('/login');
+
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  }
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -25,6 +48,7 @@ function NavBar() {
   window.addEventListener("scroll", scrollHandler);
 
   return (
+
     <Navbar
       expanded={expand}
       fixed="top"
@@ -92,10 +116,38 @@ function NavBar() {
                 <AiFillGithub style={{ fontSize: "1.2em" }} />{" "}
               </Button>
             </Nav.Item>
+
+
+            <Nav.Item className="fork-btn">
+
+
+              <div 
+                id="navbarNav">
+                <ul className="navbar-nav ml-auto">
+                  {currentUser ? (
+                    <li className="nav-item">
+                      <button className="btn btn-danger" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </li>
+                  ) : (
+                    <li className="nav-item">
+                      <Link className="btn btn-danger" to="/login">
+                        Logout
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </Nav.Item>
+
+
+
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
   );
 }
 
