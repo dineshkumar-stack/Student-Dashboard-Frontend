@@ -30,7 +30,7 @@ function NavBar() {
       logout();
 
       // Redirect to the login page or any other desired page
-      history.push('/login');
+      history.push('/');
 
     } catch (error) {
       console.error('Logout error:', error);
@@ -72,7 +72,7 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
+              <Nav.Link as={Link} to="/Home" onClick={() => updateExpanded(false)}>
                 <BiSolidDashboard style={{ marginBottom: "2px" }} /> Dashboard
               </Nav.Link>
             </Nav.Item>

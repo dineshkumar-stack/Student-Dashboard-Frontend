@@ -14,14 +14,14 @@ function Content() {
   return (
     <div className="content">
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/home" exact component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/chart" component={ChartPage} />
         <Route path="/tasks" component={TaskPage} />
         <Route path="/userdetail" component={UserDetailPage}/>
         <Route path="/attendance" component={AttendancePage} />
         <Route path="/barChart" component={BarChart} />
-        <Route path="/login" component={LoginPage}/>
+        <Route path="/" component={LoginPage}/>
       </Switch>
     </div>
   );

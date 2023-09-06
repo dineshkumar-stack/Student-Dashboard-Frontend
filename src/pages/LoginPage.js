@@ -43,7 +43,7 @@ function LoginPage() {
         { email, password }
       );
       const { token } = response.data;
-      history.push('/');
+      history.push('/Home');
       login(token);
     } catch (error) {
       console.error("Login failed:", error);
