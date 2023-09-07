@@ -3,6 +3,8 @@
 
 Here I have create 🏛️ Zen class student dashboard all neccassary requirements that your mentioned.
 
+# My GIF 
+
 ## Features
 
 Dashboard🪟
@@ -11,6 +13,9 @@ Dashboard🪟
 - In additional class sections information are Title and Date/Time.
 - In mock interview sections information are Title, Mark and recording link in an sperate according.
 - In mock interview sections information are Title, Mark and recording link in an sperate according.
+  
+  ![](https://github.com/dineshkumar-stack/Student-Dashboard-Frontend/blob/master/image/zEn.gif)
+
 
 Task submission page:
 
