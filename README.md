@@ -3,8 +3,6 @@
 
 Here I have create 🏛️ Zen class student dashboard all neccassary requirements that your mentioned.
 
-# My GIF 
-
 ## Features
 
 Dashboard🪟
