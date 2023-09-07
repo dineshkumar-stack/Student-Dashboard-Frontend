@@ -10,15 +10,13 @@ import AllDetailsInOne from "./Task_AddClass";
 import CodeKataDetails from "./CodekataPage";
 import NavBar from "../components/NavBar";
 
-
 function Home() {
   useEffect(() => {
     var options = {
       disableOneColumnMode: true,
       float: true,
       animate: true
-      
-
+    
     };
     var grid = GridStack.init(options);
 
@@ -27,9 +25,6 @@ function Home() {
 
   });
   return (
-    
-
-
       <div className="home">
         <NavBar/>
         <div className="container-lg">

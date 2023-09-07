@@ -4,7 +4,6 @@ import Accordion from "react-bootstrap/Accordion";
 import dateFormat from 'dateformat';
 import NavBar from "../components/NavBar";
 
-
 function TaskPage() {
   const [tasks, setTasks] = useState([]);
 
@@ -69,7 +68,6 @@ function TaskPage() {
   return (
     <div className="task-page">
               <NavBar/>
-
       <table className="table table-hover">
         <thead>
           <tr>
@@ -99,7 +97,6 @@ function TaskPage() {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-
           ))}
         </tbody>
       </table>

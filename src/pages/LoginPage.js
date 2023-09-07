@@ -1,6 +1,5 @@
-// src/components/LoginPage.js
 import React, { useState, useRef, useEffect } from "react";
-import { useHistory } from 'react-router-dom'; // Import useHistory from react-router-dom
+import { useHistory } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import "../styles.css";
@@ -125,8 +124,6 @@ function LoginPage() {
         </div>
       </div>
     </div>
-
-
   );
 }
 

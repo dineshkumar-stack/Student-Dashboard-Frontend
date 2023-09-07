@@ -39,7 +39,6 @@ function AdditionalClass() {
             link: "https://example.com/assignment1",
         },
 
-        // ... other task objects
     ];
 
     return (

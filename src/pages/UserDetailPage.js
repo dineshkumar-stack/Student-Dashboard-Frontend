@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 
-
 function UserProfile() {
   const [userData, setUserData] = useState({});
   const [userDataView, setUserDataView] = useState([]);
@@ -10,7 +9,6 @@ function UserProfile() {
   const [editedUserData, setEditedUserData] = useState([]);
 
   useEffect(() => {
-    // Fetch user data from the API endpoint
     fetch("https://student-dashboard-be.onrender.com/api/userdetail")
       .then((response) => response.json())
       .then((data) => {
@@ -44,7 +42,6 @@ function UserProfile() {
     window.location.reload(true)
 
     try {
-      // Perform an API call to update user data
       const response = await fetch(
         "https://student-dashboard-be.onrender.com/api/userdetail",
         {

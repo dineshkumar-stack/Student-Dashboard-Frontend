@@ -36,7 +36,7 @@ function CodeKataDetails() {
         labels: months({ count: 12 }),
         datasets: [
             {
-                label: 'My First Dataset',
+                label: 'Score',
                 data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',

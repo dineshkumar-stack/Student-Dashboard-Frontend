@@ -9,16 +9,13 @@ export const ComplicationProvider = ({ children }) => {
   const complications = {
     Complete_Task : taskBarStatus,
     Pending_Task: taskCount - taskBarStatus,
-    // ...more complication types and their counts
   };
   useEffect(() => {
-    // Fetch data from the  API endpoint 
     fetch('https://student-dashboard-be.onrender.com/api/taskbarstatus')
       .then(response => response.json())
       .then(data => setTaskBarStatus(data.length))
       .catch(error => console.error('Error fetching task bar status:', error));
 
-    // Fetch data from the second API endpoint
     fetch('https://student-dashboard-be.onrender.com/api/tasks')
       .then(response => response.json())
       .then(data => setTaskCount(data.length))

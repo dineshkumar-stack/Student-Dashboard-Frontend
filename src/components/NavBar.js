@@ -9,11 +9,8 @@ import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
-
-
-
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -23,21 +20,14 @@ function NavBar() {
   const history = useHistory();
 
   const handleLogout = async () => {
-
     try {
-      // Perform any necessary logout actions, e.g., API requests, token removal
-      // ...
-
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       logout();
-
-      // Redirect to the login page or any other desired page
-      history.push('/');
-
+      history.push("/");
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
-  }
+  };
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -50,7 +40,6 @@ function NavBar() {
   window.addEventListener("scroll", scrollHandler);
 
   return (
-
     <Navbar
       expanded={expand}
       fixed="top"
@@ -74,7 +63,11 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/Home" onClick={() => updateExpanded(false)}>
+              <Nav.Link
+                as={Link}
+                to="/Home"
+                onClick={() => updateExpanded(false)}
+              >
                 <BiSolidDashboard style={{ marginBottom: "2px" }} /> Dashboard
               </Nav.Link>
             </Nav.Item>
@@ -119,16 +112,13 @@ function NavBar() {
               </Button>
             </Nav.Item>
 
-
             <Nav.Item className="fork-btn">
-              <div
-                id="navbarNav">
+              <div id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                   {currentUser ? (
                     <li className="nav-item">
-
                       <button className="btn btn-danger" onClick={handleLogout}>
-                        <TbLogout style={{ marginBottom: "2px"  }} />
+                        <TbLogout style={{ marginBottom: "2px" }} />
                         Logout
                       </button>
                     </li>
@@ -143,14 +133,10 @@ function NavBar() {
                 </ul>
               </div>
             </Nav.Item>
-
-
-
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
   );
 }
 

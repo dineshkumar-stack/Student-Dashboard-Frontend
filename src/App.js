@@ -1,5 +1,4 @@
 import { BrowserRouter as Router } from "react-router-dom";
-// import NavBar from "./components/NavBar";
 import Content from "./components/Content";
 import { AuthProvider } from "./context/AuthContext";
 import { TaskProvider } from "./context/TaskContext";
@@ -16,7 +15,6 @@ function App() {
           <Router>
             <div className="App">
               <div class="bg"></div>
-              {/* <NavBar /> */}
               <div className="row">
                   <div className="content-container">
                     <Content />
