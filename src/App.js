@@ -14,7 +14,7 @@ function App() {
         <AttendanceProvider>
           <Router>
             <div className="App">
-              <div class="bg"></div>
+              <div className="bg"></div>
               <div className="row">
                   <div className="content-container">
                     <Content />

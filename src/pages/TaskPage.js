@@ -4,11 +4,20 @@ import Accordion from "react-bootstrap/Accordion";
 import dateFormat from 'dateformat';
 import NavBar from "../components/NavBar";
 
+const apiUrl = 'https://student-dashboard-be.onrender.com/api';
+const authToken = localStorage.getItem('authToken');
+
+const headers = {
+  'Authorization': `${authToken}`,
+  'Content-Type': 'application/json',
+};
+
+
 function TaskPage() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch("https://student-dashboard-be.onrender.com/api/taskbarstatus")
+    fetch(`${apiUrl}/taskbarstatus`)
       .then((response) => response.json())
       .then((data) => setTasks(data))
       .catch((error) => console.error("Error fetching tasks:", error));
@@ -27,16 +36,12 @@ function TaskPage() {
   };
 
   const handleSubmit = async () => {
-    window.location.reload(true)
 
     try {
-      const response = await fetch(
-        "https://student-dashboard-be.onrender.com/api/taskbarstatus",
-        {
+      const response = await fetch(`${apiUrl}/taskbarstatus`,{
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: headers,
+
           body: JSON.stringify({
             title: taskTitle,
             SNo: SNo,
@@ -67,7 +72,7 @@ function TaskPage() {
 
   return (
     <div className="task-page">
-              <NavBar/>
+      <NavBar />
       <table className="table table-hover">
         <thead>
           <tr>
@@ -85,15 +90,15 @@ function TaskPage() {
               <Accordion.Item className="task-submit-page-item" eventKey="0">
                 <Accordion.Header>{task.title}</Accordion.Header><span>Submitted on: &#128338; {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)} &#128197;</span>
                 <Accordion.Body>
-                    <tr>
-                      <td>
-                        <strong>Front End Link : </strong>
-                        <a href={task.FrontEndLink}>{task.FrontEndLink}</a>
-                        <br />
-                        <strong>Back End Link : </strong>
-                        <a href={task.BackEndLink}>{task.BackEndLink}</a>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td>
+                      <strong>Front End Link : </strong>
+                      <a href={task.FrontEndLink}>{task.FrontEndLink}</a>
+                      <br />
+                      <strong>Back End Link : </strong>
+                      <a href={task.BackEndLink}>{task.BackEndLink}</a>
+                    </td>
+                  </tr>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>

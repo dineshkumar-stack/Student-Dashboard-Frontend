@@ -12,6 +12,17 @@ function AllDetailsInOne() {
             .then(data => setTasks(data))
             .catch(error => console.error('Error fetching tasks:', error));
     }, []);
+
+
+    // const taskPageDetails = tasks.map((task) =>
+    //     <tr key={task.id}>
+    //         <td >{task.title}</td>
+    //         <td ><a href={task.link}>View</a></td>
+    //         <td>
+    //             <Button variant="outline-info" key={task.id} href={task.link} target="_blank" >Play Recordings</Button>{" "}
+    //         </td>
+    //     </tr>
+    // )
     return (
         <Router>
             <Accordion defaultActiveKey={['2']} flush>
@@ -47,14 +58,14 @@ function AllDetailsInOne() {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-            <Accordion.Item eventKey="1">
-               <Accordion.Header>Additional Class</Accordion.Header>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>Additional Class</Accordion.Header>
                     <Accordion.Body>
                         <AdditionalClass />
                     </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Mock Interview</Accordion.Header>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>Mock Interview</Accordion.Header>
                     <Accordion.Body>
                         <div className="task-page">
                             <table className="table table-hover">

@@ -1,52 +1,60 @@
-import { Bar } from "react-chartjs-2";
-import React, { useState } from "react";
-const authToken = localStorage.getItem("authToken"); // Retrieve the token from local storage
+import { useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import dateFormat from 'dateformat';
 
-function CodeKataDetails() {
-  const [scoreData, setScoreData] = useState([]);
+const apiUrl = 'https://student-dashboard-be.onrender.com/api';
+const authToken = localStorage.getItem('authToken');
 
-  const headers = {
-    Authorization: `Bearer ${authToken}`, // Include the token in the Authorization header
-    "Content-Type": "application/json", // Set the content type based on your API's requirements
-  };
+const headers = {
+  'Authorization': `${authToken}`,
+  'Content-Type': 'application/json',
+};
 
-  fetch("https://student-dashboard-be.onrender.com/api/scores", {
-    method: "GET", // Set the HTTP method (GET, POST, PUT, DELETE, etc.)
-    headers: headers, // Set the custom headers
+console.log(authToken);
+
+function CodeKataMain() {
+  const [codeKataData, setCodeKataData] = useState([]);
+  fetch(`${apiUrl}/scores`, {
+    method: 'GET',
+    headers: headers,
   })
     .then((response) => response.json())
-    .then((data) => setScoreData(data))
-    .then((data) => {
-      // Handle the response data here
-      console.log("Data:", data);
-    })
-    .catch((error) => {
-      // Handle errors here
-      console.error("Error:", error);
-    });
+    .then((data) => setCodeKataData(data.codePracticeScores))
+    .catch((error) => console.error("Error fetching tasks:", error))
 
-  const CodeKataData = {
-    labels: scoreData.map((task) => task.timeStamp),
+  const chartData = {
+    labels: codeKataData.map((task) => (dateFormat(task.timeStamp, `dS/yyyy`))),
     datasets: [
       {
-        label: "Score",
-        data: scoreData.map((task) => task.score),
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
+        label: 'Scores',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: codeKataData.map((task) => (task.score)),
       },
     ],
   };
+
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        // grace:1,
+        position: 'left',
+      },
+    },
+  };
+
   return (
     <div>
       <div className="chart-container">
         <div className="chart">
-          <h4>CodeKata</h4>
-          <Bar data={CodeKataData} />
+          <h4>CodeKata Score</h4>
+          <Bar data={chartData} options={chartOptions} />
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CodeKataDetails;
+export default CodeKataMain;

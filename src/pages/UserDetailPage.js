@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 
+const apiUrl = 'https://student-dashboard-be.onrender.com/api';
+const authToken = localStorage.getItem('authToken');
+
+const headers = {
+  'Authorization': `${authToken}`,
+  'Content-Type': 'application/json',
+};
+
 function UserProfile() {
   const [userData, setUserData] = useState({});
   const [userDataView, setUserDataView] = useState([]);
@@ -9,7 +17,7 @@ function UserProfile() {
   const [editedUserData, setEditedUserData] = useState([]);
 
   useEffect(() => {
-    fetch("https://student-dashboard-be.onrender.com/api/userdetail")
+    fetch(`${apiUrl}/userdetail`)
       .then((response) => response.json())
       .then((data) => {
         setUserData(data);
@@ -38,17 +46,19 @@ function UserProfile() {
     }));
   };
 
-  const handleSaveClick = async () => {
-    window.location.reload(true)
+
+
+
+  const handleSaveClick = async (event) => {
+
+    event.preventDefault();
+        alert("Saved");
 
     try {
-      const response = await fetch(
-        "https://student-dashboard-be.onrender.com/api/userdetail",
+      const response = await fetch(`${apiUrl}/userdetail`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: headers,
           body: JSON.stringify(editedUserData),
         }
       );
@@ -69,7 +79,7 @@ function UserProfile() {
 
   return (
     <div className="user-profile-container Container">
-      <NavBar/>
+      <NavBar />
       <h2>User Profile</h2>
       {editMode && (
         <div className="edit-buttons float-lg-end">
