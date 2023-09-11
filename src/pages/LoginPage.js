@@ -1,23 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import "../styles.css";
-import Button from 'react-bootstrap/Button';
-import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Button from "react-bootstrap/Button";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "react-bootstrap/Tooltip";
+// import api from '../api/api';
 
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-
+  const [alertMessage, setAlertMessage] = useState("");
   const [show, setShow] = useState(false);
   const target = useRef(null);
-
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -35,18 +34,20 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       const response = await axios.post(
         "https://student-dashboard-be.onrender.com/api/login",
         { email, password }
       );
       const { token } = response.data;
-      history.push('/Home');
+      console.log(response);
+      localStorage.setItem('authToken', token);
+      history.push("/Home");
       login(token);
+      console.log(token);
     } catch (error) {
       console.error("Login failed:", error);
-      setAlertMessage('Login failed. Please check your credentials.');
+      setAlertMessage("Login failed. Please check your credentials.");
       setShowAlert(true);
     }
   };
@@ -56,17 +57,22 @@ function LoginPage() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header">Student Dashboard Login
-
+            <div className="card-header">
+              Student Dashboard Login
               <>
-                <Button className="float-end" variant="warning" size="sm" ref={target} onClick={() => setShow(!show)}>
+                <Button
+                  className="float-end"
+                  variant="warning"
+                  size="sm"
+                  ref={target}
+                  onClick={() => setShow(!show)}
+                >
                   Use Demo
                 </Button>
                 <Overlay target={target.current} show={show} placement="right">
                   {(props) => (
                     <Tooltip id="overlay-example" {...props}>
-                      Email: Admin@DemoTest.com
-                      password: Admin@123
+                      Email: Admin@DemoTest.com password: Admin@123
                     </Tooltip>
                   )}
                 </Overlay>
@@ -107,16 +113,16 @@ function LoginPage() {
                   />
                 </div>
                 <div className="d-grid justify-content-center">
-                <button
-                  type="submit"
-                  size="lg"
-                  className="btn btn-outline-primary"
-                  variant="outline-primary"
-                  disabled={isLoading}
-                  onClick={!isLoading ? handleLogin : null}
-                >
-                  {isLoading ? 'Loading…' : 'Log In'}
-                </button>
+                  <button
+                    type="submit"
+                    size="lg"
+                    className="btn btn-outline-primary"
+                    variant="outline-primary"
+                    disabled={isLoading}
+                    onClick={!isLoading ? handleLogin : null}
+                  >
+                    {isLoading ? "Loading…" : "Log In"}
+                  </button>
                 </div>
               </form>
             </div>
@@ -126,7 +132,5 @@ function LoginPage() {
     </div>
   );
 }
-
-
 
 export default LoginPage;

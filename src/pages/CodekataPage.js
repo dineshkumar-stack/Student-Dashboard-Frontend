@@ -1,60 +1,52 @@
-import { Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
+import React, { useState } from "react";
+const authToken = localStorage.getItem("authToken"); // Retrieve the token from local storage
 
-const MONTHS = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-];
-
-function months(config) {
-    var cfg = config || {};
-    var count = cfg.count || 12;
-    var section = cfg.section;
-    var values = [];
-    var i, value;
-
-    for (i = 0; i < count; ++i) {
-        value = MONTHS[Math.ceil(i) % 12];
-        values.push(value.substring(0, section));
-    }
-
-    return values;
-}
 function CodeKataDetails() {
+  const [scoreData, setScoreData] = useState([]);
 
-    // Task data for the bar chart
-    const CodeKataData = {
-        labels: months({ count: 12 }),
-        datasets: [
-            {
-                label: 'Score',
-                data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-        ],
-    };
-    return (
-        <div>
-            <div className="chart-container">
-                <div className="chart">
-                    <h4>CodeKata</h4>
-                    <Bar data={CodeKataData} />
-                </div>
-            </div>
+  const headers = {
+    Authorization: `Bearer ${authToken}`, // Include the token in the Authorization header
+    "Content-Type": "application/json", // Set the content type based on your API's requirements
+  };
+
+  fetch("https://student-dashboard-be.onrender.com/api/scores", {
+    method: "GET", // Set the HTTP method (GET, POST, PUT, DELETE, etc.)
+    headers: headers, // Set the custom headers
+  })
+    .then((response) => response.json())
+    .then((data) => setScoreData(data))
+    .then((data) => {
+      // Handle the response data here
+      console.log("Data:", data);
+    })
+    .catch((error) => {
+      // Handle errors here
+      console.error("Error:", error);
+    });
+
+  const CodeKataData = {
+    labels: scoreData.map((task) => task.timeStamp),
+    datasets: [
+      {
+        label: "Score",
+        data: scoreData.map((task) => task.score),
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+  return (
+    <div>
+      <div className="chart-container">
+        <div className="chart">
+          <h4>CodeKata</h4>
+          <Bar data={CodeKataData} />
         </div>
-    );
+      </div>
+    </div>
+  );
 }
-
 
 export default CodeKataDetails;
