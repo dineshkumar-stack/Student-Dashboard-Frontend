@@ -20,7 +20,7 @@ body {
 
 }
 
-.user-profile-container{
+.user-profile-container {
   padding: 40px 20px;
   display: flexbox;
   justify-content: center;
@@ -29,7 +29,7 @@ body {
   border-radius: 10px;
 }
 
-.form-label{
+.form-label {
   text-align: center;
 }
 
@@ -313,15 +313,16 @@ thead {
   background-color: #f4f4f4ac;
 }
 
-.user-profile{
+.user-profile {
   background-color: #fffdfd;
 }
 
-.prf2{
+.prf2 {
   padding: 10px;
 }
 
-.user-profile-container, h2 {
+.user-profile-container,
+h2 {
   text-align: center;
 
 }
@@ -329,7 +330,7 @@ thead {
 .gradient-custom-2 {
   /* fallback for old browsers */
   background: #fccb90;
-  width:100%;
+  width: 100%;
 
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
@@ -343,6 +344,7 @@ thead {
     height: 100vh !important;
   }
 }
+
 @media (min-width: 769px) {
   .gradient-custom-2 {
     border-top-right-radius: .3rem;
@@ -350,6 +352,7 @@ thead {
   }
 }
 
-.warning{
+.warning {
   color: #39393997;
 }
+

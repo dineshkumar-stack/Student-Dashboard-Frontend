@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import dateFormat from "dateformat";
 import NavBar from "../components/NavBar";
+import "../styles.css"
+
 
 const apiUrl = "https://student-dashboard-be.onrender.com/api";
 const authToken = localStorage.getItem("authToken");
@@ -74,7 +76,7 @@ function TaskPage() {
   };
 
   return (
-    <div className="task-page">
+    <div className="task-page container">
       <NavBar />
       <table className="table table-hover">
         <thead>

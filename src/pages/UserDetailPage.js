@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
+import "../styles.css"
 
 const apiUrl = "https://student-dashboard-be.onrender.com/api";
 const authToken = localStorage.getItem("authToken");
@@ -16,19 +17,9 @@ function UserProfile() {
   const [editMode, setEditMode] = useState(false);
   const [editedUserData, setEditedUserData] = useState([]);
 
+
+
   const source = () => {
-    fetch(`${apiUrl}/userdetail`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-
-        setUserDataView(data);
-      });
-  };
-
-  source();
-
-  useEffect(() => {
     fetch(`${apiUrl}/userdetail`)
       .then((response) => response.json())
       .then((data) => {
@@ -39,6 +30,12 @@ function UserProfile() {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
+    return
+  }
+
+
+  useEffect(() => {
+    source()
   }, []);
 
   const handleEditClick = () => {
@@ -58,9 +55,7 @@ function UserProfile() {
     }));
   };
 
-  const handleSaveClick = async (event) => {
-    event.preventDefault();
-    alert("Saved");
+  const handleSaveClick = async () => {
 
     try {
       const response = await fetch(`${apiUrl}/userdetail`, {
@@ -71,7 +66,7 @@ function UserProfile() {
 
       if (response.ok) {
         // User data updated successfully
-        source();
+        source()
         setUserData(editedUserData);
         setEditMode(false);
         console.log("User data updated successfully");
@@ -87,218 +82,231 @@ function UserProfile() {
   return (
     <div className="user-profile-container Container">
       <NavBar />
-      <h2>User Profile</h2>
-      {editMode && (
-        <div className="edit-buttons float-lg-end">
-          <Button variant="success" onClick={handleSaveClick}>
-            Save
-          </Button>
-          <Button variant="danger" onClick={handleCancelClick}>
-            Cancel
-          </Button>
-        </div>
-      )}
-      {!editMode && (
-        <Button
-          className="float-lg-end"
-          variant="dark"
-          onClick={handleEditClick}
-        >
-          Edit
-        </Button>
-      )}
+      <div className="main-user-detail">
+        <Row>
+          <Col xs={10}>
+            <h2 className="mb-5">User Profile</h2>
+          </Col>
+          <Col>
+            {editMode && (
+              <div className="edit-buttons float-lg-end">
+                <Button variant="success" onClick={handleSaveClick}>
+                  Save
+                </Button>{" "}
+                <Button variant="danger" onClick={handleCancelClick}>
+                  Cancel
+                </Button>
+              </div>
+            )}
+            {!editMode && (
+              <div className="edit-buttons float-lg-end">
 
-      <Form>
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="name">
-            <Form.Label column sm={2}>
-              Name
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="name"
-                value={editMode ? editedUserData.name : user.name}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+                <Button
+                  className="float-lg-end"
+                  variant="dark"
+                  onClick={handleEditClick}
+                >
+                  Edit
+                </Button>
+              </div>
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="email">
-            <Form.Label column sm={2}>
-              Email
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="email"
-                value={editMode ? editedUserData.email : user.email}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+            )}
+          </Col>
+        </Row>
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="phone">
-            <Form.Label column sm={2}>
-              Phone
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="phone"
-                value={editMode ? editedUserData.phone : user.phone}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+        <Form>
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="name">
+              <Form.Label className="align-self-center" column sm={2}>
+                Name
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={editMode ? editedUserData.name : user.name}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="batch">
-            <Form.Label column sm={2}>
-              Batch
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="batch"
-                value={editMode ? editedUserData.batch : user.batch}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="email">
+              <Form.Label className="align-self-center" column sm={2}>
+                Email
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="email"
+                  value={editMode ? editedUserData.email : user.email}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="Qualification">
-            <Form.Label column sm={2}>
-              Qualification
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="Qualification"
-                value={
-                  editMode ? editedUserData.Qualification : user.Qualification
-                }
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="phone">
+              <Form.Label className="align-self-center" column sm={2}>
+                Phone
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  value={editMode ? editedUserData.phone : user.phone}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="yearOfExperience">
-            <Form.Label column sm={2}>
-              Year of Experience
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="yearOfExperience"
-                value={
-                  editMode
-                    ? editedUserData.yearOfExperience
-                    : user.yearOfExperience
-                }
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="batch">
+              <Form.Label className="align-self-center" column sm={2}>
+                Batch
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="batch"
+                  value={editMode ? editedUserData.batch : user.batch}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="noticePeriod">
-            <Form.Label column sm={2}>
-              Notice Period
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="noticePeriod"
-                value={
-                  editMode ? editedUserData.noticePeriod : user.noticePeriod
-                }
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="Qualification">
+              <Form.Label className="align-self-center" column sm={2}>
+                Qualification
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="Qualification"
+                  value={
+                    editMode ? editedUserData.Qualification : user.Qualification
+                  }
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="gifhud">
-            <Form.Label column sm={2}>
-              Gif Hud
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="noticePeriod"
-                value={editMode ? editedUserData.gifhud : user.gifhud}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="yearOfExperience">
+              <Form.Label className="align-self-center" column sm={2}>
+                Year of Experience
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="yearOfExperience"
+                  value={
+                    editMode
+                      ? editedUserData.yearOfExperience
+                      : user.yearOfExperience
+                  }
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="resume">
-            <Form.Label column sm={2}>
-              Resume
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="resume"
-                value={editMode ? editedUserData.resume : user.resume}
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="noticePeriod">
+              <Form.Label className="align-self-center" column sm={2}>
+                Notice Period
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="noticePeriod"
+                  value={
+                    editMode ? editedUserData.noticePeriod : user.noticePeriod
+                  }
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
 
-        {userDataView.map((user) => (
-          <Form.Group as={Row} className="mb-1" controlId="portfolioURL">
-            <Form.Label column sm={2}>
-              Portfolio URL
-            </Form.Label>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                name="portfolioURL"
-                value={
-                  editMode ? editedUserData.portfolioURL : user.portfolioURL
-                }
-                onChange={handleInputChange}
-                readOnly={!editMode}
-                disabled={!editMode}
-              />
-            </Col>
-          </Form.Group>
-        ))}
-      </Form>
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="gifhud">
+              <Form.Label className="align-self-center" column sm={2}>
+                Gif Hud
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="noticePeriod"
+                  value={editMode ? editedUserData.gifhud : user.gifhud}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
+
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="resume">
+              <Form.Label className="align-self-center" column sm={2}>
+                Resume
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="resume"
+                  value={editMode ? editedUserData.resume : user.resume}
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
+
+          {userDataView.map((user) => (
+            <Form.Group as={Row} className="mb-1" controlId="portfolioURL">
+              <Form.Label className="align-self-center" column sm={2}>
+                Portfolio URL
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  name="portfolioURL"
+                  value={
+                    editMode ? editedUserData.portfolioURL : user.portfolioURL
+                  }
+                  onChange={handleInputChange}
+                  readOnly={!editMode}
+                  disabled={!editMode}
+                />
+              </Col>
+            </Form.Group>
+          ))}
+        </Form>
+      </div>
+
     </div>
   );
 }
