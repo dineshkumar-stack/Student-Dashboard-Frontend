@@ -1,26 +1,30 @@
 import { Button, Modal, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
-import dateFormat from 'dateformat';
+import dateFormat from "dateformat";
 import NavBar from "../components/NavBar";
 
-const apiUrl = 'https://student-dashboard-be.onrender.com/api';
-const authToken = localStorage.getItem('authToken');
+const apiUrl = "https://student-dashboard-be.onrender.com/api";
+const authToken = localStorage.getItem("authToken");
 
 const headers = {
-  'Authorization': `${authToken}`,
-  'Content-Type': 'application/json',
+  Authorization: `${authToken}`,
+  "Content-Type": "application/json",
 };
-
 
 function TaskPage() {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
+  function source() {
     fetch(`${apiUrl}/taskbarstatus`)
       .then((response) => response.json())
       .then((data) => setTasks(data))
       .catch((error) => console.error("Error fetching tasks:", error));
+  }
+  source();
+
+  useEffect(() => {
+    source();
   }, []);
 
   const [showModal, setShowModal] = useState(false);
@@ -32,29 +36,28 @@ function TaskPage() {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
     setShowModal(false);
-    resetForm()
+    resetForm();
   };
 
   const handleSubmit = async () => {
-
     try {
-      const response = await fetch(`${apiUrl}/taskbarstatus`,{
-          method: "POST",
-          headers: headers,
+      const response = await fetch(`${apiUrl}/taskbarstatus`, {
+        method: "POST",
+        headers: headers,
 
-          body: JSON.stringify({
-            title: taskTitle,
-            SNo: SNo,
-            FrontEndLink: FELink,
-            BackEndLink: BELink,
-          }),
-        }
-      );
+        body: JSON.stringify({
+          title: taskTitle,
+          SNo: SNo,
+          FrontEndLink: FELink,
+          BackEndLink: BELink,
+        }),
+      });
 
       if (response.ok) {
         console.log("Task submitted successfully");
-
+        source();
         handleCloseModal();
+        TaskPage();
       } else {
         console.error("Error submitting task");
       }
@@ -86,9 +89,18 @@ function TaskPage() {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <Accordion className="task-submit-page" defaultActiveKey={['2']} flush>
+            <Accordion
+              className="task-submit-page"
+              defaultActiveKey={["2"]}
+              flush
+            >
               <Accordion.Item className="task-submit-page-item" eventKey="0">
-                <Accordion.Header>{task.title}</Accordion.Header><span>Submitted on: &#128338; {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)} &#128197;</span>
+                <Accordion.Header>{task.title}</Accordion.Header>
+                <span>
+                  Submitted on: &#128338;{" "}
+                  {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)}{" "}
+                  &#128197;
+                </span>
                 <Accordion.Body>
                   <tr>
                     <td>

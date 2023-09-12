@@ -8,7 +8,7 @@ function ChartPage() {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
       {
-        label: "Sales",
+        label: "score",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
@@ -21,7 +21,7 @@ function ChartPage() {
     <div>
       <div className="chart-container">
         <div className="chart">
-          <h5>Chart Page</h5>
+          <h5 style={{ textAlign: "center", padding: "5px" }}>WebKata</h5>
           <Bar data={chartData} />
         </div>
       </div>

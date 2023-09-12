@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 
-const apiUrl = 'https://student-dashboard-be.onrender.com/api';
-const authToken = localStorage.getItem('authToken');
+const apiUrl = "https://student-dashboard-be.onrender.com/api";
+const authToken = localStorage.getItem("authToken");
 
 const headers = {
-  'Authorization': `${authToken}`,
-  'Content-Type': 'application/json',
+  Authorization: `${authToken}`,
+  "Content-Type": "application/json",
 };
 
 function UserProfile() {
@@ -15,6 +15,18 @@ function UserProfile() {
   const [userDataView, setUserDataView] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editedUserData, setEditedUserData] = useState([]);
+
+  const source = () => {
+    fetch(`${apiUrl}/userdetail`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data);
+
+        setUserDataView(data);
+      });
+  };
+
+  source();
 
   useEffect(() => {
     fetch(`${apiUrl}/userdetail`)
@@ -46,25 +58,20 @@ function UserProfile() {
     }));
   };
 
-
-
-
   const handleSaveClick = async (event) => {
-
     event.preventDefault();
-        alert("Saved");
+    alert("Saved");
 
     try {
-      const response = await fetch(`${apiUrl}/userdetail`,
-        {
-          method: "PUT",
-          headers: headers,
-          body: JSON.stringify(editedUserData),
-        }
-      );
+      const response = await fetch(`${apiUrl}/userdetail`, {
+        method: "PUT",
+        headers: headers,
+        body: JSON.stringify(editedUserData),
+      });
 
       if (response.ok) {
         // User data updated successfully
+        source();
         setUserData(editedUserData);
         setEditMode(false);
         console.log("User data updated successfully");

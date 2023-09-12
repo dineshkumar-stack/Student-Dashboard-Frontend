@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 function BarChart() {
   const [tasksBar, setTasksBar] = useState([]);
@@ -17,31 +17,50 @@ function BarChart() {
     datasets: [
       {
         label: "Task score",
-        data: tasksBar.map((task) => (task.mark)),
+        data: tasksBar.map((task) => task.mark),
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
         borderWidth: 1,
-        indexAxis: 'x',
+        indexAxis: "x",
       },
     ],
-  };
-
-  const chartOptions = {
-    scales: {
-      y: {
-        beginAtZero: false,
-        // grace:1,
-        position: 'left',
-      },
-    },
   };
 
   return (
     <div>
       <div className="chart-container">
         <div className="chart">
-          <h4>Task Score</h4>
-          <Bar data={taskData} options={chartOptions} />
+          <h2 style={{ textAlign: "center", padding: "2px" }}>Task Score</h2>
+          <Line
+            data={taskData}
+            options={{
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Task Score",
+                },
+                legend: {
+                  display: false,
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  // grace:1,
+                  position: "left",
+                },
+              },
+              animations: {
+                tension: {
+                  duration: 2000,
+                  easing: "linear",
+                  from: 1,
+                  to: 0,
+                  loop: true,
+                },
+              },
+            }}
+          />
         </div>
       </div>
     </div>

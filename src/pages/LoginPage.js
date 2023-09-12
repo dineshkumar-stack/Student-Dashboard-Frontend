@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
@@ -19,20 +19,7 @@ function LoginPage() {
   const target = useRef(null);
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    function simulateNetworkRequest() {
-      return new Promise((resolve) => setTimeout(resolve, 3000));
-    }
-
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
@@ -41,7 +28,8 @@ function LoginPage() {
       );
       const { token } = response.data;
       console.log(response);
-      localStorage.setItem('authToken', token);
+      localStorage.setItem("authToken", token);
+      setLoading(false);
       history.push("/Home");
       login(token);
       console.log(token);
@@ -49,6 +37,7 @@ function LoginPage() {
       console.error("Login failed:", error);
       setAlertMessage("Login failed. Please check your credentials.");
       setShowAlert(true);
+      setLoading(false);
     }
   };
 

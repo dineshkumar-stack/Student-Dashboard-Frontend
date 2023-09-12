@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { ComplicationContext } from "../context/ComplicationContext";
+import "../styles.css"
 
 function PieChart() {
   const { complications } = useContext(ComplicationContext);
@@ -20,7 +21,7 @@ function PieChart() {
         borderWidth: 3,
       },
     ],
-    
+
     labels: Object.keys(complications),
   };
 
@@ -32,7 +33,11 @@ function PieChart() {
           <br />
           <h5>Task Status</h5>
           <br />
-          <Pie data={complicationData} />
+          <Doughnut data={complicationData} /> <br />
+          <small className="warning">
+            <b>Warning:</b> 1 mark will be deducted from your total score if
+            you're failed to submit the task within the deadline
+          </small>
         </div>
       </div>
     </div>
