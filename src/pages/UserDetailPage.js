@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
-import "../styles.css"
+import "../styles.css";
 
 const apiUrl = "https://student-dashboard-be.onrender.com/api";
 const authToken = localStorage.getItem("authToken");
@@ -11,6 +11,8 @@ const headers = {
   "Content-Type": "application/json",
 };
 
+console.log("ccccccccccccccccccc", authToken);
+
 function UserProfile() {
   const [userData, setUserData] = useState({});
   const [userDataView, setUserDataView] = useState([]);
@@ -19,20 +21,25 @@ function UserProfile() {
 
 
 
-  const source = () => {
-    fetch(`${apiUrl}/userdetail`)
+  function source(){
+
+    fetch(`${apiUrl}/userdetail`, {
+      method: "GET",
+      headers: headers,
+    })
       .then((response) => response.json())
+      // .then((data) => {
+      //   console.log('Score Data:', setUserDataView(data.userDetails));
+      // })
       .then((data) => {
-        setUserData(data);
-        setUserDataView(data);
-        setEditedUserData(data);
+        setUserData(data.userDetails);
+        setUserDataView(data.userDetails);
+        setEditedUserData(data.userDetails);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-    return
   }
-
 
   useEffect(() => {
     source()
@@ -55,8 +62,9 @@ function UserProfile() {
     }));
   };
 
-  const handleSaveClick = async () => {
 
+
+  const handleSaveClick = async () => {
     try {
       const response = await fetch(`${apiUrl}/userdetail`, {
         method: "PUT",
@@ -66,9 +74,10 @@ function UserProfile() {
 
       if (response.ok) {
         // User data updated successfully
-        source()
-        setUserData(editedUserData);
         setEditMode(false);
+        setUserData(editedUserData);
+        source()
+
         console.log("User data updated successfully");
       } else {
         // Handle error scenario
@@ -100,7 +109,6 @@ function UserProfile() {
             )}
             {!editMode && (
               <div className="edit-buttons float-lg-end">
-
                 <Button
                   className="float-lg-end"
                   variant="dark"
@@ -109,7 +117,6 @@ function UserProfile() {
                   Edit
                 </Button>
               </div>
-
             )}
           </Col>
         </Row>
@@ -306,7 +313,6 @@ function UserProfile() {
           ))}
         </Form>
       </div>
-
     </div>
   );
 }

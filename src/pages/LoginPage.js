@@ -27,11 +27,12 @@ function LoginPage() {
         { email, password }
       );
       const { token } = response.data;
-      console.log(response);
       localStorage.setItem("authToken", token);
       setLoading(false);
       history.push("/Home");
       login(token);
+      window.location.reload(true);
+
       console.log(token);
     } catch (error) {
       console.error("Login failed:", error);

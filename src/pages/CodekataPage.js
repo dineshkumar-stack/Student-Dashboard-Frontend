@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import dateFormat from "dateformat";
 
@@ -14,13 +14,16 @@ console.log(authToken);
 
 function CodeKataMain() {
   const [codeKataData, setCodeKataData] = useState([]);
-  fetch(`${apiUrl}/scores`, {
-    method: "GET",
-    headers: headers,
-  })
-    .then((response) => response.json())
-    .then((data) => setCodeKataData(data.codePracticeScores))
-    .catch((error) => console.error("Error fetching tasks:", error));
+
+  useEffect(() => {
+    fetch(`${apiUrl}/scores`, {
+      method: "GET",
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((data) => setCodeKataData(data.codePracticeScores))
+      .catch((error) => console.error("Error fetching tasks:", error));
+  }, []);
 
   const chartData = {
     type: "line",

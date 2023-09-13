@@ -23,7 +23,6 @@ function TaskPage() {
       .then((data) => setTasks(data))
       .catch((error) => console.error("Error fetching tasks:", error));
   }
-  source();
 
   useEffect(() => {
     source();

@@ -20,10 +20,14 @@ function NavBar() {
   const history = useHistory();
 
   const handleLogout = async () => {
+
     try {
-      localStorage.removeItem("token");
       logout();
       history.push("/");
+      localStorage.removeItem('authToken');
+      window.location.assign("/")
+
+
     } catch (error) {
       console.error("Logout error:", error);
     }

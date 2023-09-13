@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     setCurrentUser(null);
+    window.location.reload();
   };
 
   return (
