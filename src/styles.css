@@ -218,9 +218,10 @@ thead {
 
 }
 
+/* 
 .nav-link {
   padding: 0.8rem 1rem !important;
-}
+} */
 
 @media (max-width: 767px) {
   .nav-link {
@@ -230,8 +231,7 @@ thead {
 
 .navbar-nav .nav-item {
   position: relative;
-  margin-left: 60px;
-}
+  margin: 0px 10px 0px 20px;}
 
 .navbar-nav .nav-item a {
   font-weight: 400;
@@ -240,9 +240,6 @@ thead {
   z-index: 1;
 }
 
-.navbar-nav .nav-item a:hover {
-  color: #00eeff;
-}
 
 .container-lg {
   text-align: center;
@@ -356,3 +353,12 @@ h2 {
   color: #39393997;
 }
 
+.nav-link-user {
+  font-size: 15px;
+}
+
+.nav-link-name {
+  font: icon;
+  font-family: Helvetica;
+  font-weight: bold;
+}

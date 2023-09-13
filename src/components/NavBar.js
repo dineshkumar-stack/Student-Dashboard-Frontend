@@ -11,13 +11,47 @@ import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
 import { useAuth } from "../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
+import { ImUserCheck } from "react-icons/im";
+
+
+const authToken = localStorage.getItem("authToken");
+
+const headers = {
+  Authorization: `${authToken}`,
+  "Content-Type": "application/json",
+};
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const [userData, setUserData] = useState([]);
+
 
   const { currentUser, logout } = useAuth();
   const history = useHistory();
+
+
+  const apiUrl = 'https://student-dashboard-be.onrender.com/api/userdetail';
+
+  fetch(apiUrl, {
+    method: 'GET',
+    headers: headers
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setUserData(data.userDetails);
+
+
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+
 
   const handleLogout = async () => {
 
@@ -50,10 +84,17 @@ function NavBar() {
       expand="md"
       className={navColour ? "sticky" : "navbar border-bottom"}
     >
+
       <Container>
         <Navbar.Brand href="/" className="d-flex">
           <img src={logo} className="img-fluid logo" alt="brand" />
         </Navbar.Brand>
+        {userData.map((user) => (
+          <Nav.Item>
+            <span className="nav-link-name"><ImUserCheck style={{ marginBottom: "2px" }}  /> {user.name}</span>
+          </Nav.Item>
+        ))}
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
@@ -110,36 +151,37 @@ function NavBar() {
               <Button
                 href="https://github.com/dineshkumar-stack"
                 target="_blank"
-                className="fork-btn-inner btn btn-dark"
+                className="git-user fork-btn-inner btn btn-dark"
               >
                 <AiFillGithub style={{ fontSize: "1.2em" }} />{" "}
               </Button>
             </Nav.Item>
-
             <Nav.Item className="fork-btn">
               <div id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                   {currentUser ? (
                     <li className="nav-item">
                       <button className="btn btn-danger" onClick={handleLogout}>
-                        <TbLogout style={{ marginBottom: "2px" }} />
+                        <TbLogout style={{ marginBottom: "2px" }} />{" "}
                         Logout
                       </button>
                     </li>
                   ) : (
                     <li className="nav-item">
                       <Link className="btn btn-danger" to="/login">
-                        <TbLogout style={{ marginBottom: "2px" }} />
+                        <TbLogout style={{ marginBottom: "2px" }} />{" "}
                         Logout
                       </Link>
                     </li>
                   )}
+
                 </ul>
               </div>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>
+
     </Navbar>
   );
 }

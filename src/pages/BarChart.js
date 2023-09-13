@@ -30,19 +30,10 @@ function BarChart() {
     <div>
       <div className="chart-container">
         <div className="chart">
-          <h2 style={{ textAlign: "center", padding: "2px" }}>Task Score</h2>
+          <h5 style={{ textAlign: "center", padding: "2px" }}>Task Score</h5>
           <Line
             data={taskData}
             options={{
-              plugins: {
-                title: {
-                  display: true,
-                  text: "Task Score",
-                },
-                legend: {
-                  display: false,
-                },
-              },
               scales: {
                 y: {
                   beginAtZero: false,
