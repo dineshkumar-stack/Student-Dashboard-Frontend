@@ -122,12 +122,13 @@ function UserProfile() {
         </Row>
 
         <Form>
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="name">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="name">
               <Form.Label className="align-self-center" column sm={2}>
                 Name
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="name"
@@ -140,12 +141,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="email">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="email">
               <Form.Label className="align-self-center" column sm={2}>
                 Email
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="email"
@@ -158,12 +160,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="phone">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="phone">
               <Form.Label className="align-self-center" column sm={2}>
                 Phone
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="phone"
@@ -176,12 +179,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="batch">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="batch">
               <Form.Label className="align-self-center" column sm={2}>
                 Batch
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="batch"
@@ -194,12 +198,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="Qualification">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="Qualification">
               <Form.Label className="align-self-center" column sm={2}>
                 Qualification
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="Qualification"
@@ -214,12 +219,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="yearOfExperience">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="yearOfExperience">
               <Form.Label className="align-self-center" column sm={2}>
                 Year of Experience
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="yearOfExperience"
@@ -236,12 +242,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="noticePeriod">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="noticePeriod">
               <Form.Label className="align-self-center" column sm={2}>
                 Notice Period
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="noticePeriod"
@@ -256,12 +263,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="gifhud">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="gifhud">
               <Form.Label className="align-self-center" column sm={2}>
                 Gif Hud
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="noticePeriod"
@@ -274,12 +282,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="resume">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="resume">
               <Form.Label className="align-self-center" column sm={2}>
                 Resume
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="resume"
@@ -292,12 +301,13 @@ function UserProfile() {
             </Form.Group>
           ))}
 
-          {userDataView.map((user) => (
-            <Form.Group as={Row} className="mb-1" controlId="portfolioURL">
+          {userDataView.map((user, idx) => (
+            <Form.Group
+              as={Row} className="mb-1" controlId="portfolioURL">
               <Form.Label className="align-self-center" column sm={2}>
                 Portfolio URL
               </Form.Label>
-              <Col sm={4}>
+              <Col key={user.id} sm={4}>
                 <Form.Control
                   type="text"
                   name="portfolioURL"

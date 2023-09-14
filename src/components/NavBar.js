@@ -88,12 +88,12 @@ function NavBar() {
       <Container>
         <Navbar.Brand href="/" className="d-flex">
           <img src={logo} className="img-fluid logo" alt="brand" />
-        </Navbar.Brand>
-        {userData.map((user) => (
-          <Nav.Item>
-            <span className="nav-link-name"><ImUserCheck style={{ marginBottom: "2px" }}  /> {user.name}</span>
-          </Nav.Item>
-        ))}
+        </Navbar.Brand >
+        <Nav.Item>
+          {userData.map((user, index) => (
+            <span key={user} className="nav-link-name"><ImUserCheck style={{ marginBottom: "2px" }} /> {user.name}</span>
+          ))}
+        </Nav.Item>
 
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"

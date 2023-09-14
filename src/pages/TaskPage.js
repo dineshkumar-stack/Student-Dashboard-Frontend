@@ -89,32 +89,32 @@ function TaskPage() {
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task) => (
-            <Accordion
-              className="task-submit-page"
-              defaultActiveKey={["2"]}
-              flush
-            >
-              <Accordion.Item className="task-submit-page-item" eventKey="0">
-                <Accordion.Header>{task.title}</Accordion.Header>
-                <span>
-                  Submitted on: &#128338;{" "}
-                  {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)}{" "}
-                  &#128197;
-                </span>
-                <Accordion.Body>
-                  <tr>
-                    <td>
+          {tasks.map((task, index) => (
+            <tr key={task.id}>
+              <td>
+                <Accordion
+                  className="task-submit-page"
+                  defaultActiveKey={["2"]}
+                  flush
+                >
+                  <Accordion.Item className="task-submit-page-item" eventKey="0">
+                    <Accordion.Header>{task.title}</Accordion.Header>
+                    <span>
+                      Submitted on: &#128338;{" "}
+                      {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)}{" "}
+                      &#128197;
+                    </span>
+                    <Accordion.Body>
                       <strong>Front End Link : </strong>
                       <a href={task.FrontEndLink}>{task.FrontEndLink}</a>
                       <br />
                       <strong>Back End Link : </strong>
                       <a href={task.BackEndLink}>{task.BackEndLink}</a>
-                    </td>
-                  </tr>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

@@ -9,31 +9,31 @@ function AdditionalClass() {
             link: "https://example.com/assignment1",
         },
         {
-            id: 1,
+            id: 2,
             title: "AWS Day 1",
             Date: "13/08/2023 - Sunday - 8:00 AM : 10:30 AM",
             link: "https://example.com/assignment1",
         },
         {
-            id: 1,
+            id: 3,
             title: "AWS Day 1",
             Date: "13/08/2023 - Sunday - 8:00 AM : 10:30 AM",
             link: "https://example.com/assignment1",
         },
         {
-            id: 1,
+            id: 4,
             title: "AWS Day 1",
             Date: "13/08/2023 - Sunday - 8:00 AM : 10:30 AM",
             link: "https://example.com/assignment1",
         },
         {
-            id: 1,
+            id: 5,
             title: "AWS Day 1",
             Date: "13/08/2023 - Sunday - 8:00 AM : 10:30 AM",
             link: "https://example.com/assignment1",
         },
         {
-            id: 1,
+            id: 6,
             title: "AWS Day 1",
             Date: "13/08/2023 - Sunday - 8:00 AM : 10:30 AM",
             link: "https://example.com/assignment1",
@@ -50,7 +50,7 @@ function AdditionalClass() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map((task) => (
+                    {tasks.map((task, index) => (
                         <tr key={task.id}>
                             <td>{task.title}</td>
                             <td className="AddClassDate">{task.Date}
@@ -58,8 +58,8 @@ function AdditionalClass() {
                         </tr>
                     ))}
                 </tbody>
-            </table >
-        </div >
+            </table>
+        </div>
     );
 }
 

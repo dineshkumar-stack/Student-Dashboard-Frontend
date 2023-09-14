@@ -42,9 +42,9 @@ function AllDetailsInOne() {
                 <tbody>
                   {tasks.map((task) => (
                     <tr key={task.id}>
-                      <td>{task.title}</td>
+                      <td key={task.id}>{task.title}</td>
                       <td>
-                        <a style={{ textAlign: "center", textDecoration:"none"}} href={task.link}>View</a>
+                        <a key={task.id} style={{ textAlign: "center", textDecoration: "none" }} href={task.link}>View</a>
                       </td>
                       <td>
                         <Button
