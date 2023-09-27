@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -25,33 +25,31 @@ function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
   const [userData, setUserData] = useState([]);
-
-
   const { currentUser, logout } = useAuth();
   const history = useHistory();
 
 
   const apiUrl = 'https://student-dashboard-be.onrender.com/api/userdetail';
 
-  fetch(apiUrl, {
-    method: 'GET',
-    headers: headers
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
+  useEffect(() => {
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: headers
     })
-    .then((data) => {
-      setUserData(data.userDetails);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserData(data.userDetails);
 
-
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
-
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   const handleLogout = async () => {
 
